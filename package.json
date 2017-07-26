@@ -14,12 +14,15 @@
         "relay-runtime": "^1.1.0"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start-js": "react-scripts start",
+        "start": "npm-run-all -p watch:css start-js",
+        "build": "npm run build:css && react-scripts build",
         "prestart": "relay-compiler --src ./src --schema ./src/schema.graphql",
-        "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
-        "relay": "relay-compiler --src ./src --schema ./src/schema.graphql"
+        "relay": "relay-compiler --src ./src --schema ./src/schema.graphql",
+        "build:css": "node-sass-chokidar --include-path ./src/assets/styles --include-path ./node_modules src/ -o src/",
+        "watch:css": "npm run build:css && node-sass-chokidar --include-path ./src/assets/styles --include-path ./node_modules src/ -o src/ --watch --recursive"
     },
     "devDependencies": {
         "babel-plugin-import-inspector": "^2.0.0",
@@ -28,6 +31,8 @@
         "babel-preset-es2015": "^6.24.1",
         "babel-preset-react": "^6.24.1",
         "babel-preset-stage-0": "^6.24.1",
+        "node-sass-chokidar": "^0.0.3",
+        "npm-run-all": "^4.0.2",
         "relay-compiler": "^1.1.0"
     }
 }
