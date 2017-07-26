@@ -1,0 +1,26 @@
+schema {
+  query: queryType
+  mutation: CanaanMutatuionType
+}
+
+# 友邻市集的数据提交接口
+type CanaanMutatuionType {
+  GoodsOrder: String
+}
+
+# root Query
+type queryType {
+  foo: String
+
+  # get user by username
+  users(username: String): UserInfo
+}
+
+# user info type
+type UserInfo {
+  id: String
+  username: String
+  nickname: String
+  phone: String
+  avatar: String
+}

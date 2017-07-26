@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        "relay",
+        "transform-runtime", ["import-inspector", {
+            "serverSideRequirePath": true,
+            "webpackRequireWeakId": true
+        }]
+    ],
+    "presets": [
+        "react",
+        "es2015",
+        "stage-0"
+    ]
+}
