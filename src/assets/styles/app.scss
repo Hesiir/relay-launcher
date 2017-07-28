@@ -4,6 +4,7 @@ body {
     padding: 0;
     font-family: sans-serif;
     color: $mainColor;
+    font-size: n(16);
 }
 
 .App {
@@ -12,18 +13,13 @@ body {
 
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+    height: n(80); // should be 80px
 }
 
 .App-header {
-    background-color: #222;
-    height: 150px;
+    background-image: radial-gradient(circle farthest-corner at center, #3C4B57 0%, #1C262B 100%);
     padding: 20px;
     color: white;
-}
-
-.App-intro {
-    font-size: large;
 }
 
 @keyframes App-logo-spin {

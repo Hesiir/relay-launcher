@@ -1,1 +1,5 @@
-$mainColor: #888888
+$mainColor: #888888;
+// !convert pt by design to rem
+@function n($num) {
+    @return $num / 12 * 1rem
+}
