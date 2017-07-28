@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactLoading from '../components/react-loading'
 
 export default function Exception({
   isLoading,
@@ -13,10 +14,10 @@ export default function Exception({
       return <div>Loader timed out!</div>
     } else if (pastDelay) {
       // Display a loading screen after a set delay.
-      return <div>Loading...</div>
+      return <ReactLoading/>
     } else {
       // Don't flash "Loading..." when we don't need to.
-      return null
+      return <ReactLoading/>
     }
   } else if (error) {
     // If we aren't loading, maybe
