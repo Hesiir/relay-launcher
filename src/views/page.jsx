@@ -5,6 +5,9 @@ import Text from '../components/text'
 import '../assets/styles/app.css'
 
 export default class Page extends Component {
+  componentDidMount(){
+    window.removePreMountedLoading && window.removePreMountedLoading()
+  }
   render() {
     let { foo } = this.props
     return (
