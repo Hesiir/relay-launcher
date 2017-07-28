@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
@@ -20,12 +21,168 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-  </head>
-  <body>
+    <style name="font-base"></style>
+    <style name="style-base">
+        html {
+            /* disable browser default scroll */
+            overflow: hidden;
+        }
+        
+        html,
+        body,
+        #ReactMountRoot {
+            /* set viewport size for best visual  */
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        
+        #LoadingBeforeMounted {
+            opacity: 1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #LoadingBeforeMounted.removing {
+            opacity: 0;
+            transition: opacity 400ms;
+        }
+    </style>
+    <script>
+        (function() {
+            function realPixelsView() {
+                var _dev_ = "%NODE_ENV%" !== 'production'
+                var isPC = navigator.platform.match('Win|Mac|X11') !== null
+                if (!_dev_ && isPC) return
+                var dpr = window.devicePixelRatio
+                var scale = 1 / dpr
+                var fontSize = dpr * 12 + 'px'
+                var headTag = document.getElementsByName('viewport')[0]
+                var fontBase = document.getElementsByName('font-base')[0]
+                headTag.setAttribute('content', "width=device-width,initial-scale=" + scale + ",  maximum-scale=" + scale + ", user-scalable=no")
+                fontBase.innerText = "html{font-size:" + fontSize + ";}"
+            }
+            realPixelsView()
+        })()
+    </script>
+</head>
+
+<body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root"></div>
+    <div id="LoadingBeforeMounted">
+        <!-- This is a pure loading template -->
+
+        <!-- react cloud  -->
+        <div class="react-cloud">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="point"></div>
+        </div>
+        <style>
+            #LoadingBeforeMounted {
+                height: 100%;
+                background-image: radial-gradient(circle farthest-corner at center, #3C4B57 0%, #1C262B 100%);
+            }
+            
+            .react-cloud {
+                position: absolute;
+                top: calc(50% - 2rem);
+                left: calc(50% - 2rem);
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+                perspective: 800px;
+                -webkit-perspective: 800px;
+            }
+            
+            .react-cloud .item {
+                position: absolute;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+            
+            .react-cloud .item:nth-of-type(1) {
+                left: 0%;
+                top: 0%;
+                animation: rotate-one 1s linear infinite;
+                border-bottom: .12rem solid #EFEFFA;
+                border-top: .12rem solid #EFEFFA;
+            }
+            
+            .react-cloud .item:nth-of-type(2) {
+                right: 0%;
+                top: 0%;
+                animation: rotate-two 1s linear infinite;
+                border-right: .12rem solid #EFEFFA;
+                border-left: .12rem solid #EFEFFA;
+            }
+            
+            .react-cloud .item:nth-of-type(3) {
+                right: 0%;
+                bottom: 0%;
+                animation: rotate-three 1s linear infinite;
+                border-bottom: .12rem solid #EFEFFA;
+                border-top: .12rem solid #EFEFFA;
+            }
+            
+            @keyframes rotate-one {
+                0% {
+                    transform: rotateX(50deg) rotateY(-45deg) rotateZ(0deg);
+                }
+                100% {
+                    transform: rotateX(50deg) rotateY(-45deg) rotateZ(360deg);
+                }
+            }
+            
+            @keyframes rotate-two {
+                0% {
+                    transform: rotateX(65deg) rotateY(0deg) rotateZ(0deg);
+                }
+                100% {
+                    transform: rotateX(65deg) rotateY(0deg) rotateZ(360deg);
+                }
+            }
+            
+            @keyframes rotate-three {
+                0% {
+                    transform: rotateX(50deg) rotateY(45deg) rotateZ(0deg);
+                }
+                100% {
+                    transform: rotateX(50deg) rotateY(45deg) rotateZ(360deg);
+                }
+            }
+            
+            .react-cloud .point {
+                position: absolute;
+                top: calc(50% - .2rem);
+                left: calc(50% - .2rem);
+                background-color: rgba(255, 255, 255, .8);
+                width: .4rem;
+                height: .4rem;
+                border-radius: 50%;
+            }
+        </style>
+        <script>
+            // this function can be execute just once before page refresh(or init)
+            window['removePreMountedLoading'] = function() {
+                var loadingDOM = document.getElementById('LoadingBeforeMounted')
+                loadingDOM.classList.add('removing')
+                var time = setTimeout(function() {
+                    document.body.removeChild(loadingDOM)
+                    window['removePreMountedLoading'] = null
+                    delete window['removePreMountedLoading']
+                    clearTimeout(time)
+                }, 400)
+            }
+        </script>
+    </div>
+    <div id="ReactMountRoot"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -36,5 +193,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
