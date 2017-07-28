@@ -18,6 +18,7 @@
         "start": "npm-run-all -p watch:css start-js",
         "build": "npm run build:css && react-scripts build",
         "prestart": "relay-compiler --src ./src --schema ./src/schema.graphql",
+        "prebuild": "relay-compiler --src ./src --schema ./src/schema.graphql",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "relay": "relay-compiler --src ./src --schema ./src/schema.graphql",
