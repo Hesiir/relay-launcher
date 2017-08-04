@@ -26,7 +26,7 @@ const _fetchQuery = function fetchQuery(
     }).then(response => {
         return response.json()
     }).catch(error => {
-        throw (error)
+        return
     })
 }
 
