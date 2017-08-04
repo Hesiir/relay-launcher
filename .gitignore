@@ -24,3 +24,7 @@ yarn-error.log*
 
 # editor
 .vscode
+
+# build
+.yarnclean
+.python-version
