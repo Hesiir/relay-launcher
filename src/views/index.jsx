@@ -12,8 +12,10 @@ const App = () =>
     render={({ error, props }) => {
       if (props) {
         return <Routes {...props}/>
-      } else {
+      } else if(error) {
         return <ApiCallbackError/>
+      } else {
+        return null
       }
     }} />
 
