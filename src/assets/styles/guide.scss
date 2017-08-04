@@ -1,4 +1,5 @@
 $mainColor: #888888;
+$noteFontColor: #c9c9c9;
 // !convert pt by design to rem
 @function n($num) {
     @return $num / 12 * 1rem
