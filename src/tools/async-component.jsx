@@ -2,12 +2,9 @@ import React from 'react'
 import Loadable from 'react-loadable'
 import Exception from './exception'
 
-const AsyncComponent = ({ path, ...rest }) => {
+const AsyncComponent = ({ loader, ...rest }) => {
   let CallBackModule = Loadable({
-    loader: () => {
-      let mod = import(`../views/${path}`)
-      return mod
-    },
+    loader: loader,
     loading: Exception,
   })
   return <CallBackModule {...rest}/>

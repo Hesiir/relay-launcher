@@ -4,8 +4,8 @@
     "private": true,
     "dependencies": {
         "classnames": "^2.2.5",
-        "react": "^15.6.1",
-        "react-dom": "^15.6.1",
+        "react": "next",
+        "react-dom": "next",
         "react-loadable": "^4.0.3",
         "react-relay": "^1.1.0",
         "react-router": "^4.1.1",
