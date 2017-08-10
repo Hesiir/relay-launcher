@@ -6,11 +6,11 @@ function Authorization(){
 
 }
 
-const PrivateRoute = ({ src, noAuthHandler, exclude, auth, ...rest }) => {
+const PrivateRoute = ({ loader, noAuthHandler, exclude, auth, ...rest }) => {
   return <Route {...rest} render={() => {
-    if (exclude) return <AsyncComponent {...rest} path={src}/>
+    if (exclude) return <AsyncComponent {...rest} loader/>
     if (auth) {
-      return <AsyncComponent {...rest} path={src}/>
+      return <AsyncComponent {...rest} loader/>
     } else {
       if (noAuthHandler) return noAuthHandler()
       return null // go to login

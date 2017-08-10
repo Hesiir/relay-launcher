@@ -6,8 +6,8 @@ import PrivateRoute from '../tools/private-route'
 const ReactRouter = ({...rest}) => {
   return (<BrowserRouter>
   <Switch>
-    <PrivateRoute {...rest} exclude path='/page2' src='page2'/>
-    <PrivateRoute {...rest} exclude path='/' src='page'/>
+    <PrivateRoute {...rest} exclude path='/page2' loader={() => import('./page2')}/>
+    <PrivateRoute {...rest} exclude path='/' loader={() => import('./page')}/>
   </Switch>
 </BrowserRouter>)
 }
